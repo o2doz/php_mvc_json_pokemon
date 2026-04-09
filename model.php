@@ -8,12 +8,12 @@ class PokemonModel {
 
     public function __construct() {
         $this->domain_name = "https://tyradex.app";
-        $this->base_api_url = "/api/v1/pokemon/";        
-        $this->base_api_url_gen = "/api/v1/gen/";        
+        $this->base_api_url = "/api/v1/pokemon";        
+        $this->base_api_url_gen = "/api/v1/gen";        
     }
 
     public function getPokemon($idOrName) {
-        $url = $this->domain_name . $this->base_api_url . $idOrName;
+        $url = $this->domain_name . $this->base_api_url . "/" . $idOrName;
         $json = file_get_contents($url);
 
         $pokemon = json_decode($json, true);

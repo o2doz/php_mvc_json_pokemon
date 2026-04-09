@@ -22,6 +22,7 @@ Attendus :
 - si aucun identifiant de generation n'est fourni, recuperer la liste complete des pokemons depuis l'API distante
 - si un identifiant de generation est fourni, recuperer uniquement les pokemons de cette generation
 - utiliser les proprietes deja presentes dans la classe pour construire l'URL
+
 - recuperer la reponse distante avec `file_get_contents`
 - convertir le JSON recu en donnees PHP avec `json_decode`
 - retourner le resultat decode
@@ -56,7 +57,7 @@ Vous devez donc remplacer l'appel direct actuel par un routage tres simple base 
 
 Attendus :
 
-- lire les parametres recus dans la requete
+- lire les parametres recus dans la requete 
 - prevoir au minimum une route pour recuperer un pokemon unique
 - prevoir une route pour recuperer la liste des pokemons
 - permettre eventuellement de filtrer par generation sur la route de liste
