@@ -2,14 +2,14 @@
 
 ## Objectif
 
-Compléter une petite architecture MVC en PHP pour exposer des donnees Pokemon au format JSON, puis la consommer depuis un fichier HTML/JavaScript.
+Compléter une petite architecture MVC en PHP pour exposer des donnees Pokemon au format JSON, puis verifier directement le resultat dans le navigateur en modifiant l'URL.
 
 Le but est de comprendre :
 
 - le role du model dans la recuperation des donnees
 - le role du controller dans l'orchestration
 - le role d'un routage tres simple dans `index.php`
-- l'appel d'une API PHP depuis le JavaScript du navigateur
+- le fonctionnement d'un point d'entree PHP consulte directement dans le navigateur
 
 ## Travail a faire
 
@@ -50,7 +50,7 @@ Contraintes :
 
 ### 3. Faire un routage ultra basique dans `index.php`
 
-Le serveur PHP sera appele depuis le JavaScript.
+Le resultat JSON sera verifie directement dans le navigateur.
 
 Vous devez donc remplacer l'appel direct actuel par un routage tres simple base sur les parametres de l'URL.
 
@@ -72,22 +72,20 @@ Contraintes :
 
 - rester sur un routage tres simple, avec des conditions basiques
 - inutile d'utiliser un framework ou un routeur complexe
-- le fichier doit servir de point d'entree pour les appels `fetch` du JavaScript
+- le fichier doit servir de point d'entree unique pour toutes les requetes
 
-### 4. Partie `index.html`
+### 4. Verification dans le navigateur
 
-La partie front devra ensuite appeler votre serveur PHP avec `fetch`.
+Une fois le routage en place, vous devez tester le resultat directement dans le navigateur.
 
-Place order pour la consigne JS + HTML a completer plus tard :
+Attendus :
 
-- preparer une fonction JavaScript qui appelle `index.php`
-- construire l'URL en fonction du besoin : un pokemon, tous les pokemons, ou une generation
-- verifier le statut HTTP de la reponse
-- convertir la reponse en JSON
-- afficher le resultat dans la console ou dans la page
-- prevoir dans le HTML une zone d'affichage minimale pour voir le resultat
+- lancer le serveur PHP local
+- saisir differents parametres dans l'URL pour tester les routes
+- verifier que le navigateur affiche bien du JSON
+- tester au minimum le cas d'un pokemon unique, la liste complete et le filtrage par generation
 
-Je completerai moi-meme les consignes detaillees JS + HTML.
+L'objectif est de comprendre comment une URL peut piloter le comportement du point d'entree PHP.
 
 ## Organisation attendue
 
@@ -95,7 +93,6 @@ Je completerai moi-meme les consignes detaillees JS + HTML.
 - `controller.php` : appelle le model puis envoie la reponse via la vue
 - `view.php` : renvoie du JSON au navigateur
 - `index.php` : point d'entree et routage basique
-- `index.html` : client JavaScript qui appelle le serveur PHP
 
 ## Conseils
 
@@ -103,4 +100,4 @@ Je completerai moi-meme les consignes detaillees JS + HTML.
 - commencez par faire fonctionner la liste complete des pokemons
 - ajoutez ensuite le filtrage par generation
 - terminez par le routage dans `index.php`
-- utilisez le navigateur et l'onglet reseau pour verifier les URL appelees
+- testez vos routes en changeant directement l'URL dans le navigateur
