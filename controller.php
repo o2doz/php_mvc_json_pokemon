@@ -3,10 +3,10 @@ require_once "./model.php";
 require_once "./view.php";
 
 class PokemonController {
-    private PokemonModel $model;
-    private PokemonView $view;     
+    private $model;
+    private $view;     
 
-    public function __construct(PokemonModel $pokemonModel, PokemonView $pokemonView) {
+    public function __construct($pokemonModel, $pokemonView) {
         $this->model = $pokemonModel;
         $this->view = $pokemonView;
     }

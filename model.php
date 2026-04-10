@@ -3,7 +3,6 @@
 class PokemonModel {
     private $domain_name;
     private $base_api_url;
-
     private $base_api_url_gen;
 
     public function __construct() {

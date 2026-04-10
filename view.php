@@ -1,5 +1,4 @@
 <?php
-
 class PokemonView {
     public function __construct() {}
 
