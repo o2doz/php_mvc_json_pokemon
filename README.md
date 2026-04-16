@@ -88,12 +88,54 @@ Attendus :
 
 L'objectif est de comprendre comment une URL peut piloter le comportement du point d'entree PHP.
 
+### 5. Ajouter un affichage HTML en plus du JSON
+
+Vous devez maintenant permettre l'affichage d'un pokemon unique ou d'une liste de pokemons en HTML, en conservant la possibilite d'obtenir du JSON.
+
+Attendus :
+
+- ajouter deux nouvelles methodes dans `view.php` : une pour afficher un pokemon en HTML et une pour afficher une liste de pokemons en HTML
+- creer une template HTML basique pour afficher un pokemon
+- reutiliser cette meme template pour afficher plusieurs pokemons avec une boucle `foreach` en PHP+HTML
+- faire en sorte que le controller recoive l'information indiquant si la reponse doit etre produite en JSON ou en HTML
+- transmettre cette information depuis le routeur via un parametre `?json=true`
+- si `?json=true` est present, continuer a utiliser les methodes JSON de la vue
+- si `?json=true` est absent, utiliser les nouvelles methodes HTML de la vue
+- conserver le meme principe de routes pour un pokemon unique et pour une liste de pokemons
+
+Exemples de comportements attendus :
+
+- une URL comme `index.php?action=pokemon&id=25&json=true` doit afficher le pokemon au format JSON
+- une URL comme `index.php?action=pokemon&id=25` doit afficher le pokemon au format HTML
+- une URL comme `index.php?action=pokemons&generation=1&json=true` doit afficher la liste au format JSON
+- une URL comme `index.php?action=pokemons&generation=1` doit afficher la liste au format HTML
+
+Contraintes :
+
+- ne pas dupliquer l'affichage HTML dans le controller
+- le controller doit choisir la bonne methode de `view.php` selon l'information recue depuis le routeur
+- le routeur doit seulement lire les parametres de l'URL et transmettre l'information au controller
+- la presentation HTML doit rester simple, lisible et faite avec PHP integre dans du HTML
+- la template de base d'un pokemon ne doit pas etre reecrite une seconde fois pour la liste
+- rester dans la logique MVC deja mise en place
+
+Exemple de boucle possible pour afficher plusieurs pokemons dans une vue HTML :
+
+```php
+<?php foreach ($pokemons as $pokemon): ?>
+    <article>
+        <h2><?= htmlspecialchars($pokemon['name']) ?></h2>
+        <p>ID : <?= htmlspecialchars($pokemon['id']) ?></p>
+    </article>
+<?php endforeach; ?>
+```
+
 ## Organisation attendue
 
 - `model.php` : recupere et decode les donnees distantes
-- `controller.php` : appelle le model puis envoie la reponse via la vue
-- `view.php` : renvoie du JSON au navigateur
-- `index.php` : point d'entree et routage basique
+- `controller.php` : appelle le model puis choisit la bonne reponse a produire via la vue
+- `view.php` : renvoie du JSON ou genere du HTML pour le navigateur
+- `index.php` : point d'entree, routage basique et lecture du parametre `?json=true`
 
 ## Conseils
 
@@ -102,3 +144,4 @@ L'objectif est de comprendre comment une URL peut piloter le comportement du poi
 - ajoutez ensuite le filtrage par generation
 - terminez par le routage dans `index.php`
 - testez vos routes en changeant directement l'URL dans le navigateur
+- verifiez ensuite les deux formats de sortie : JSON avec `?json=true` et HTML sans ce parametre
